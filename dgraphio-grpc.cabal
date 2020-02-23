@@ -1,0 +1,95 @@
+cabal-version:       2.4
+name:                dgraphio-grpc
+synopsis:            DGraph GRPC client
+homepage:            https://github.com/avanov/dgraphio-grpc
+license:             MIT
+license-file:        LICENSE
+
+-- PVP summary:      +-+------- breaking API changes
+--                   | | +----- non-breaking API additions
+--                   | | | +--- code changes with no API change
+version:             0.1.0.0
+
+-- A longer description of the package.
+-- description:
+
+-- A URL where users can report bugs.
+bug-reports:         https://github.com/avanov/dgraphio-grpc/issues
+
+author:              Maxim Avanov
+-- An email address to which users can send suggestions, bug reports, and patches
+maintainer:          maxim.avanov@gmail.com
+
+-- A copyright notice.
+-- copyright:
+
+category:            Database
+
+-- Extra files to be distributed with the package, such as examples or a README
+extra-source-files:  CHANGELOG.md
+
+
+common shared-properties
+  default-language: Haskell2010
+  ghc-options:
+    -Wall
+
+
+library
+    import:            shared-properties
+
+  -- Modules exported by the library.
+  exposed-modules:     Lib
+
+  -- Modules included in this library but not exported.
+  -- other-modules:
+
+  -- LANGUAGE extensions used by modules in this package.
+  -- other-extensions:
+
+  -- Other library packages from which modules are imported.
+  build-depends:       base ^>= 4.12.0.0
+                     , proto3-suite == 0.4.0.0
+                     , proto3-wire ^>= 1.1.0
+                     , deepseq ^>= 1.4.4.0
+                     , bytestring ^>= 0.10.8.2
+                     , containers ^>= 0.6.0.1
+                     , text ^>= 1.2.3.1
+                     , vector ^>= 0.12.1.2
+                     , grpc-haskell ^>= 0.0.1.0
+
+  -- Directories containing source files.
+  hs-source-dirs:      src/lib
+
+
+executable dgraphio-grpc
+  import:              shared-properties
+
+  -- .hs or .lhs file containing the Main module.
+  main-is:             Main.hs
+
+  -- Modules included in this executable, other than Main.
+  -- other-modules:
+
+  -- LANGUAGE extensions used by modules in this package.
+  -- other-extensions:
+
+  -- Other library packages from which modules are imported.
+  build-depends:       base ^>=4.12.0.0
+                     -- provides compile-proto-file cli command
+                     , proto3-suite == 0.4.0.0
+                     , dgraphio-grpc
+
+  -- Directories containing source files.
+  hs-source-dirs:      src/exe
+
+
+test-suite dgraphio-grpc-test
+  import:              shared-properties
+
+  -- The interface type and version of the test suite.
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             LibTest.hs
+  build-depends:       base ^>=4.12.0.0
+

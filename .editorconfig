@@ -1,0 +1,17 @@
+[*.cabal]
+indent_style = space
+indent_size = 4
+max_line_length = 99
+
+[*.hs]
+indent_style = space
+indent_size = 4
+max_line_length = 99
+
+[*.nix]
+indent_style = space
+indent_size = 4
+max_line_length = 99
+
+[Makefile]
+indent_style = tab
